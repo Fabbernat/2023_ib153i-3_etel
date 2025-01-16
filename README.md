@@ -3,4 +3,4 @@
 
 Contributors:
 - Fábián Bernát
-  És még 5 résztvevő, akinek a nevét nem osztom meg, privátsági okokból
+  És még 5 résztvevő, akiknek a nevét nem osztom meg, privátsági okokból
