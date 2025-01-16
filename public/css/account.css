@@ -1,0 +1,31 @@
+.container {
+    background-color:none;
+    padding: 5px 20px 25px 20px;
+    border: none;
+    border-radius: 3px;
+    color:black;
+  }
+  .bt:hover{
+    background-color: #e6e6e6;
+  }
+  .bt{
+    border-radius: 5rem !important;
+    padding: 10px 30px 10px 30px !important;
+  }
+
+input[type="checkbox"] {
+    background-color: #d85249;
+    border-color: black;
+    cursor: pointer;
+    border-width: .15rem;
+}
+
+input[type="checkbox"]:focus{
+    background-color: #d85249;
+    border-color: black;
+}
+
+input[type="checkbox"]:checked{
+    background-color: #d85249;
+    border-color: black;
+}

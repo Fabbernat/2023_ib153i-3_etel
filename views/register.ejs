@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css” type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/css/registration.css" type="text/css">
+        <title>Regisztráció</title>
+    </head>
+        <header>
+        <%- include('./navbar.ejs'); %>
+        </header>
+    <body onload="openPageSlice(event)">
+        
+        <div class="text-center">
+        <form method="post" action="/registeruser">
+            <div class="container">
+                <div class="col"></div>
+                <div class="col">
+            <div class="text-center">
+                <h1>Regisztráció</h1>
+                <b>Felhasználó jogkör választása:</b><br>
+            </div>
+                    
+                    <div class="col-sm-5"></div>
+                    <div class="tab col" style="margin-top: .5rem;">
+                        
+                        <select name="roles" id="roles" class="dropdmenu" onchange="openPageSlice(event)">
+                            <option value="ROLE_USER">Rendelő</option>
+                            <option value="ROLE_RESTAURANT">Étterem</option>
+                            <option value="ROLE_COURIER">Futár</option>
+                        </select>
+                    </div>  
+                    <div class="col"></div>
+                    <!-- Űrlapelemek itt -->
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="familyname">Keresztnév:</label>
+                            <input type="text" class="form-control" id="forename" placeholder="Keresztnév" name="forename" required>
+                        </div>
+                        <div class="col">
+                            <label for="surname">Vezetéknév:</label>
+                            <input type="text" class="form-control" id="surname" placeholder="Vezetéknév" name="surname" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        
+                        <div class="col">
+                        <label for="email">E-mail cím:</label>
+                        <input type="email" class="form-control" id="email" placeholder="E-mail cím" name="email" required>
+                        </div>
+
+                        <div class="col">
+                        <label for="username">Felhasználónév:</label>
+                        <input type="text" class="form-control" id="username" placeholder="Felhasználónév" name="username" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="pswd">Jelszó:</label>
+                            <input type="password" class="form-control" id="pswd" placeholder="Jelszó" name="pswd" required>
+                        </div>
+                        <div class="col">
+                            <label for="pswdagain">Jelszó újra:</label>
+                            <input type="password" class="form-control" id="pswdagain" placeholder="Jelszó újra" name="pswdagain" required>
+                        </div>
+                        <div class="col">
+                            <strong style="font-size: small; white-space: nowrap;">Jelszó megjelenítése</strong><br>
+                            <button onclick="togglePassword()" id="toggle-password" type="button" class="btn2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                              </svg>
+                            </button>
+                        </div>
+                    
+                    </div>
+                    <div id="userinput" class="tabcontent">  
+                    <div class="col"><h3><i>Szállítási adatok:</i></h3></div>
+                    <div class="form-group row">
+                        
+                        <div class="col">
+                            <label for="zipcode">Irányítószám</label>
+                            <input type="text" class="form-control" id="zipcode" placeholder="Irányítószám" name="zipcode">
+                        </div>
+
+                        <div class="col">
+                            <label for="city">Város</label>
+                            <input type="text" class="form-control" id="city" placeholder="Város" name="city">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                        <label for="primaryaddress">Szállítási cím:</label>
+                        <input type="text" class="form-control" id="primaryaddress" placeholder="Szállítási cím" name="primaryaddress">
+                        </div>
+                        <div class="col">
+                        <label for="secondaryaddress">Emelet/Ajtószám</label>
+                        <input type="text" class="form-control" id="secondaryaddress" placeholder="Emelet/Ajtószám" name="secondaryaddress">
+                        </div>
+                    </div>
+                    
+                    </div>
+                        <div id="restaurantinput" class="tabcontent col">
+                            <div class="col"><h3><i>Éttermem adatai:</i></h3></div>
+                            <div class="col">
+                                <label for="restaurant_name">Éttermem neve:</label>
+                                <input type="text" class="form-control" id="restaurant_name" name="restaurant_name" placeholder="Éttermem neve" style="margin-bottom: 20px;">
+                            </div>
+                            <div class="col"><h4><i>Elhelyezkedési adatok:</i></h4></div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label for="rest_zipcode">Irányítószám</label>
+                                    <input type="text" class="form-control" id="rest_zipcode" placeholder="Irányítószám" name="rest_zipcode">
+                                </div>
+                                <div class="col">
+                                    <label for="rest_city">Város</label>
+                                    <input type="text" class="form-control" id="rest_city" placeholder="Város" name="rest_city">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                <label for="rest_primaryaddress">Étterem címe:</label>
+                                <input type="text" class="form-control" id="rest_primaryaddress" placeholder="Étterem címe" name="rest_primaryaddress">
+                                </div>
+                                <div class="col">
+                                <label for="rest_secondaryaddress">Emelet/Ajtószám</label>
+                                <input type="text" class="form-control" id="rest_secondaryaddress" placeholder="Emelet/Ajtószám" name="rest_secondaryaddress">
+                                </div>
+                            </div>
+                            <div class="col"><h4><i>Nyitvatartási adatok:</i></h4></div>
+                            <div class="form-group row">
+                                <div class="col-3">
+                                    <b>Hétfő:</b>
+                                    <br><input type="text" class="form-control" id="monday" name="monday" placeholder="nyitás-zárás">
+                                </div>
+                                <div class="col-3">
+                                    <b>Kedd:</b>
+                                    <br><input type="text" class="form-control" id="tuesday" name="tuesday" placeholder="nyitás-zárás">
+                                </div>
+                                <div class="col-3">
+                                    <b>Szerda:</b>
+                                    <br><input type="text" class="form-control" id="wednesday" name="wednesday" placeholder="nyitás-zárás">
+                                </div>
+                                <div class="col-3">
+                                    <b>Csütörtök:</b>
+                                    <br><input type="text" class="form-control" id="thursday" name="thursday" placeholder="nyitás-zárás">
+                                </div>
+                                <div class="col-4">
+                                    <b>Péntek:</b>
+                                    <br><input type="text" class="form-control" id="friday" name="friday" placeholder="nyitás-zárás">
+                                </div>
+                                <div class="col-4">
+                                    <b>Szombat:</b>
+                                    <br><input type="text" class="form-control" id="saturday" name="saturday" placeholder="nyitás-zárás">
+                                </div>
+                                <div class="col-4">
+                                    <b>Vasárnap:</b>
+                                    <br><input type="text" class="form-control" id="sunday" name="sunday" placeholder="nyitás-zárás">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn2 btn-default submitbuttn"><strong>Regisztráció</strong></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>    
+        </div>
+    <script>
+        function togglePassword() {
+            var p1 = document.getElementById("pswd");
+            var p2 = document.getElementById("pswdagain");
+            if (p1.type === "password") {
+                p1.type = "text";
+                p2.type = "text";
+            } else {
+                p1.type = "password";
+                p2.type = "password";
+            }
+        }
+
+        function openPageSlice(evt) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        var x = document.getElementById("roles").value;
+        if(x=='ROLE_RESTAURANT'){
+        document.getElementById('restaurantinput').style.display = "block";
+        }
+        else {
+        document.getElementById('userinput').style.display = "block";
+        }
+        }
+       
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>

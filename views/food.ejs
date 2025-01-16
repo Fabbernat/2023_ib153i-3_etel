@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+<html>
+<head>
+    <title>Étel részletei</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/food.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <meta charset="UTF-8"/>
+  </head>
+    <header>
+    <%- include('./navbar.ejs'); %>
+      </header>
+  <body>
+    
+    <div class="text-center">
+      <!-- <img id="etelKep" src="<%=food.img %>" class="image-container border-image" alt="Étel képe"> -->
+      <h1><%=restaurantname%></h1>
+      <div id="etelNev" class="mt-5"><h2><%= food.name %><h2></div>
+      <div id="etelLeiras"><%= food.description %></div>
+      <p><span class="fw-bold">Ár:</span> <span id="etelAr"><%= food.price %> Ft</span></p>
+      <% if (username) { %>
+      <a href="/addtocart/<%=food.id%>" class="btn btn-light border-black">Hozzáadás a kosárhoz</a>
+      <% } else { %>
+      <button  class="btn btn-light border-black" disabled>Ehhez a szolgáltatáshoz be kell jelentkezned!</a>
+      <% } %>
+    </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+  </html>

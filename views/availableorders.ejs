@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <title>Availble Orders</title>
+    <link rel="stylesheet" href="/css/availableorders.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8"/>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+    <header>
+      <%- include('./navbar.ejs'); %>
+      </header>
+  <body>
+    
+    <div class="grid-container">
+      <div class="item1">
+        <table>
+          <tr><th>Fel nem vett rendelések</th></tr>
+            <% for (var i=0; i<availableorders.length; i++) { %>
+                <tr><td><%= availableorders[i].restaurantname %></td></tr>
+                <tr><td><%= (availableorders[i].restzip + ", " + availableorders[i].restcity + ", " + availableorders[i].restadd1 + ", " + availableorders[i].restadd2)%></td></tr>
+                <tr><td><%= (availableorders[i].userforename + " " + availableorders[i].usersurname)%></td></tr>
+                <tr><td><%= (availableorders[i].userzip + ", " + availableorders[i].usercity + ", " + availableorders[i].useradd1 + ", " + availableorders[i].useradd2)%></td></tr>
+                <tr><td><a href="/acceptorder/<%= availableorders[i].orderid%>"><button class="button border-black">Rendelés felvétele</button></a></td></tr>
+            <% } %>
+        </table>
+        </div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
+  </body>
+</html>

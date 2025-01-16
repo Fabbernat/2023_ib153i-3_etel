@@ -1,0 +1,22 @@
+.maincont{
+    margin-top: 12rem;
+}
+.colorblack{
+    color: black;
+}
+.inlineword{
+    padding-left: 5rem;
+}
+.topborder{
+    border-top: 2px black dashed;
+}
+.toprem{
+    margin-bottom: 1rem;
+}
+body{
+    font-size: large;
+}
+#futarkep{
+    max-width: 25rem;
+    max-height: 25rem;
+}

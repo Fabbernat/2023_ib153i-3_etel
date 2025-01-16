@@ -1,0 +1,136 @@
+.carousel-img{
+    height: 500px;
+    width: 500px;
+}
+
+.carousel{
+    margin-bottom: 50px !important;
+}
+
+.carousel-indicators{
+    position: unset !important;
+    bottom: -50px !important;
+}
+
+.carousel-indicators [data-bs-target]{
+    box-sizing: revert !important;
+    text-indent: 0 !important;
+}
+
+.form-control{
+    border-radius: 5rem !important;
+    padding: 8px !important;
+    background-color: #f0d5d5 !important;
+}
+
+input[type="search"]:focus{
+    transition: .4s;
+    background-color: #c9c4c4 !important;
+}
+
+.border-search{
+    border-color: black !important;
+    border-width: 2px !important;
+}
+
+.top-7{
+    top: 7%;
+}
+
+.start-80{
+    left: 80%;
+}
+
+.up-15{
+    margin-top: -15px;
+}
+
+.hr-attention{
+    border-width: 2px;
+    opacity: 100;
+    width: 35%;
+}
+
+.hr-food{
+    border-width: 2px;
+    opacity: 100;
+    margin-bottom: 1px;
+}
+
+.hr-food:first-child{
+    margin-top: 5px;
+}
+
+.img-food{
+    box-sizing: border-box;
+    max-width: 100%;
+    max-height: 50%;
+}
+
+.margin-food{
+    padding-left: 5px;
+}
+
+.margin-left{
+    margin-left: 10px !important;
+}
+
+.margin-right{
+    margin-right: 10px;
+}
+
+.margin-carousel{
+    margin-left: 1.333333% !important;
+}
+
+.days p{
+    margin: 0 !important;
+}
+
+.border-card{
+    border-width: 3px !important;
+    border-color: black !important;
+    box-shadow: 0 0 3px 5px #422800;
+}
+
+.border-card:last-child{
+    margin-bottom: 2rem;
+}
+
+
+.searchInput .results{
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 280px;
+    width: 461px;
+    overflow-y: auto;
+}
+  
+.searchInput.active .results{
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+    margin-top: 53px;
+    margin-left: 132px;
+}
+  
+.results li{
+    list-style: none;
+    padding: 8px 12px;
+    display: none;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+    background-color: rgb(100, 96, 96);
+    color: rgba(255, 255, 255, 0.829);
+}
+  
+.searchInput.active .results li{
+    display: block;
+}
+
+.results li:hover{
+    background: rgba(34, 31, 31);
+    transition: .25s ease-in-out;
+}

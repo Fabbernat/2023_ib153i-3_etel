@@ -1,0 +1,24 @@
+h2{
+    text-align: center;
+}
+td{
+    text-align: left;
+}
+
+.btn2{
+    border-radius: 5rem !important;
+    padding: 10px 30px 10px 30px !important;
+}
+.container{
+    position: relative;
+    padding-top: 3%;
+} 
+.lista{
+    font-size: 150%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.list{
+    font-size: 90%;
+}
+

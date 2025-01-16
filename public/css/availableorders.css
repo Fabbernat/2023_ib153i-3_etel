@@ -1,0 +1,44 @@
+body{
+    background-color: rgb(160, 39, 39)
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    grid-template-areas:
+      "item1 item2 item3"
+      "item1 item4 item3";
+  }
+  .nav-button {
+    background-color: rgb(194, 54, 80);
+    color: #000; /* Szövegszín */
+    padding: 10px 20px; /* Belső térítés a gomb körül */
+    border-radius: 40%;
+    box-shadow: 5px 5px 5px #000; /* Árnyék (X-offset, Y-offset, terjedés, árnyék szín) */
+    cursor: pointer; /* Mutató az egér fölé helyezésekor */
+}
+h1{
+    font-size: 15px;
+}
+  .item1 {
+    grid-area: item1;
+    text-align: left;
+  }
+  
+  .item2 {
+    grid-area: item2;
+    text-align: left;
+    align-self: center;
+  }
+  
+  .item3 {
+    grid-area: item3;
+    text-align: right;
+  }
+  
+  .item4 {
+    grid-area: item4;
+    text-align: left;
+    align-self: center;
+  }

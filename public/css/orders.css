@@ -1,0 +1,51 @@
+.orderskep{
+    max-width: 20rem;
+    max-height: 20rem;
+}
+.maindiv{
+    margin-top: 8rem;
+}
+.vertical-menu {
+    width: 25rem;
+    max-height: 25rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-align: center;
+    font-size: medium;
+  }
+  
+  .vertical-menu a {
+    background-color:#d85249 ;
+    color: rgb(30, 30, 30);
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    text-align: left;
+    font-weight: bold;
+    border-top: 1px black dashed;
+    
+  }
+  
+  .vertical-menu a:hover {
+    background-color: #ddb4b4;
+  }
+  
+  .vertical-menu a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #ff6d62; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #9b3c35 ; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #99251c; 
+  }

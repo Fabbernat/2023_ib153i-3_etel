@@ -1,0 +1,48 @@
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.alertmsg{
+    text-align: center;
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 40px;
+}
+
+body{
+    background-color: #d85249 !important;
+    overflow-x: hidden;
+}
+
+.btn{
+    border-radius: 5rem !important;
+    padding: 10px 30px 10px 30px !important;
+}
+
+.border-black {
+    border-width: 3px !important;
+    box-shadow: 4px 4px 1px 1px #422800;
+}
+
+.margin-first{
+    margin: 30px 0 30px 0;
+}
+
+.margin-lang{
+    margin: 30px !important
+}
+a:link {
+    color: black;
+    }
+
+    a:visited {
+        color: black;
+    }
+
+    a:hover {
+        color: black;
+    }
+
+    a:active {
+        color: black;
+    }

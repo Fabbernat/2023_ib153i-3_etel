@@ -1,0 +1,77 @@
+<% if (typeof msg !== 'undefined') { %>
+      <div class="alertmsg">
+            <%= msg %>
+      </div>
+<% } %>
+   
+<div class="text-center">
+      <div class="row">                 
+            <%if (role == "ROLE_RESTAURANT") { %>
+                  <div class="col-1"></div>
+                  <div class="col-7">                   
+                        <a href="/" class="border-black margin-first btn btn-light float-start">Főoldal</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/myrestaurant" class="border-black margin-first btn btn-light float-end">Saját éttermem</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/logout" class="border-black margin-first btn btn-light float-start">Kijelentkezés</a>
+                  </div>
+                  
+            <% } else if (role == "ROLE_COURIER") {%>
+                  <div class="col-1"></div>
+                  <div class="col-7">                   
+                        <a href="/" class="border-black margin-first btn btn-light float-start">Főoldal</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/availableorders" class="border-black margin-first btn btn-light float-end">Elérhető rendelések</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/logout" class="border-black margin-first btn btn-light float-start">Kijelentkezés</a>
+                  </div>
+
+            <% }else if(role == "ROLE_USER"){ %>
+                  <div class="col-1"></div>
+                  <div class="col-5">                   
+                        <a href="/" class="border-black margin-first btn btn-light float-start">Főoldal</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/account" class="border-black margin-first btn btn-light">Fiókom</a>
+                  </div>
+
+                  <div class="col-1">
+                        <a href="/orders" class="border-black margin-first btn btn-light float-end">Rendeléseim</a>
+                  </div>
+
+                  <div class="col-1">
+                        <a href="/cart" class="border-black margin-first btn btn-light float-end">Kosár</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/logout" class="border-black margin-first btn btn-light float-start">Kijelentkezés</a>
+                  </div>
+
+            <% } else { %>
+                  <div class="col-1"></div>
+                  <div class="col-7">                   
+                        <a href="/" class="border-black margin-first btn btn-light float-start">Főoldal</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/login" class="border-black margin-first btn btn-light float-end">Bejelentkezés</a>
+                  </div>
+
+                  <div class="col-2">
+                        <a href="/register" class="border-black margin-first btn btn-light float-start">Regisztráció</a>
+                  </div>
+            <% } %>
+
+      </div>             
+</div>
+     
+

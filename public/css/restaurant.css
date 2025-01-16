@@ -1,0 +1,46 @@
+.hr-days{
+    opacity: 100% !important;
+    border-width: 3px;
+}
+  
+.hr-food{
+    opacity: 100% !important;
+    border-width: 2px;
+}
+
+.a-food{
+    color: black !important;
+    text-decoration: none;
+}
+  
+.text-dark:hover{
+    color: rgba(14, 7, 7, 0.575) !important;
+    transition: .3s;
+}
+  
+.hover p{
+    margin: 0;
+}
+  
+.hover:hover{
+    background-color: rgb(161, 41, 41);
+    transition: .15s ease-out;
+    box-shadow: 0 0 3px 5px rgba(161, 41, 41, 0.89);
+}
+
+input[type="checkbox"] {
+    background-color: #d85249;
+    border-color: black;
+    cursor: pointer;
+    border-width: .15rem;
+}
+
+input[type="checkbox"]:focus{
+    background-color: #d85249;
+    border-color: black;
+}
+
+input[type="checkbox"]:checked{
+    background-color: #d85249;
+    border-color: black;
+}

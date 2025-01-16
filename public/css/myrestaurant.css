@@ -1,0 +1,11 @@
+div{
+    border: 0px solid black;
+}
+th{
+    background-color: lightgray !important;
+}
+.szin{
+    background-color: lightgray !important;
+    font-weight: bold;
+    border-radius: 4rem;
+}

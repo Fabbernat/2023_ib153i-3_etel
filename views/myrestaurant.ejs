@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/myrestaurant.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <title>My Restaurant</title>
+    </head>
+    <body onload="openPageSlice(event, 'availableFoods'), nodisplay()">
+        <header>
+           <%- include('./navbar.ejs'); %>
+           
+        </header>
+
+        <div class="container text-center my-5">
+            <div class="d-flex justify-content-center">
+                <a class="border-black margin-first btn btn-light float-end" href="/myorders">Rendeléseim</a>
+            </div>
+            <h2>
+                <%= restaurant.name %> beállításai
+            </h2>
+            
+            <div class="d-flex justify-content-center my-5">
+                
+                <nav class="navbar navbar-expand-sm szin">
+                    <div class="container-fluid szin">
+                      <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <button class="nav-link active tablinks" onclick="openPageSlice(event, 'availableFoods')">Elérhető ételek</button>
+                        </li>
+                        <li class="nav-item">
+                          <button class="nav-link tablinks" onclick="openPageSlice(event, 'addFood')">Új étel hozzáadása</button>
+                        </li>
+                        <li class="nav-item">
+                          <button class="nav-link tablinks" onclick="openPageSlice(event, 'openHours')">Nyitvatartás</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+            </div>
+             <!-- Ételek listája -->
+             <div id="availableFoods" class="tabcontent">
+             <div class="row mx-5 my-5 table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th class="greyd">Étel neve</th>
+                            <th>Leírás</th>
+                            <th>Ár</th>
+                            <th>Tagek</th>
+                            <th>Módítás</th>
+                            <th>Törlés</th>
+                        </tr>
+                        <% for (let i = 0; i < foods.length; i++) { %>
+                        <tr>
+                            <form action="/updatefood/<%= foods[i].id%>" method="post">
+                            <td><input type="text" name="foodName" id="foodName<%= i%>" value="<%= foods[i].name %>" class="col-12 form-control" disabled></td>
+                            <td><textarea type="text" name="foodDescription" id="foodDescription<%= i%>" class="col-12 form-control" disabled><%= foods[i].description %></textarea></td>
+                            <td><input type="text" name="foodPrice" id="foodPrice<%= i%>" value="<%= foods[i].price %>"  class="col-12 form-control" disabled></td>
+                            <td><input type="text" name="foodTags" id="foodTags<%= i%>" value="<%= foods[i].tag %>"  class="col-12 form-control" disabled></td>
+                            <td>
+                                <input type="checkbox" id="check<%= i%>" style="margin-right: 5px;">
+                                <button class="button border-black" id="updateButton<%= i%>" disabled>Módosítás</button>
+                            </td>
+                            <script>
+                                document.getElementById("check<%= i%>").onchange = function() {
+                                    document.getElementById("foodName<%= i%>").disabled = !this.checked;
+                                    document.getElementById("foodDescription<%= i%>").disabled = !this.checked;
+                                    document.getElementById("foodPrice<%= i%>").disabled = !this.checked;
+                                    document.getElementById("foodTags<%= i%>").disabled = !this.checked;
+                                    document.getElementById("updateButton<%= i%>").disabled = !this.checked;
+                                };
+                            </script>
+                            </form>
+                            <td>
+                                <a href="/deletefood/<%= foods[i].id%>">
+                                <button class="button border-black">Törlés</button>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+            <!-- Étel hozzáadása form -->
+            <div id="addFood" class="tabcontent">
+                <div class="row my-5" id="addFood">
+                <form action="/addfood" method="post">
+                    <b>Új étel hozzáadása:</b><br>
+                    <div class="row mx-5">
+                        <div class="col-3">
+                            <label for="newFoodName">Étel neve:</label>
+                            <input type="text" id="newFoodName" name="newFoodName" placeholder="Új étel neve" class="form-control">
+                        </div>
+                        <div class="col-5">
+                            <label for="newFoodDescription">Étel leírása:</label>
+                            <input type="text" name="newFoodDescription" id="newFoodDescription" placeholder="Új étel leírása" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="newFoodPrice">Étel ára:</label>
+                            <input type="text" name="newFoodPrice" id="newFoodPrice" class="form-control" placeholder="Új étel ára">
+                        </div>
+                        <div class="col">
+                            <label for="newFoodTags">Étel azonositói</label>
+                            <input type="text" name="newFoodTags" id="newFoodTags" class="form-control" placeholder="Ételhez tartozó azonositók">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-light border-black my-5">Étel hozzáadása</button>
+                </form>
+                </div>
+            </div>
+            <div id="openHours" class="tabcontent">
+                <form action="/changeopening" method="post">
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <b>Hétfő:</b>
+                            <br><input type="text" class="form-control" id="mon" name="mon" value="<%= restaurant.monday%>" disabled>
+                        </div>
+                        <div class="col-3">
+                            <b>Kedd:</b>
+                            <br><input type="text" class="form-control" id="tue" name="tue" value="<%= restaurant.tuesday%>" disabled>
+                        </div>
+                        <div class="col-3">
+                            <b>Szerda:</b>
+                            <br><input type="text" class="form-control" id="wed" name="wed" value="<%= restaurant.wednesday%>" disabled>
+                        </div>
+                        <div class="col-3">
+                            <b>Csütörtök:</b>
+                            <br><input type="text" class="form-control" id="thu" name="thu" value="<%= restaurant.thursday%>" disabled>
+                        </div>
+                        <div class="col-4">
+                            <b>Péntek:</b>
+                            <br><input type="text" class="form-control" id="fri" name="fri" value="<%= restaurant.friday%>" disabled>
+                        </div>
+                        <div class="col-4">
+                            <b>Szombat:</b>
+                            <br><input type="text" class="form-control" id="sat" name="sat" value="<%= restaurant.saturday%>" disabled>
+                        </div>
+                        <div class="col-4">
+                            <b>Vasárnap:</b>
+                            <br><input type="text" class="form-control" id="sun" name="sun" value="<%= restaurant.sunday%>" disabled>
+                        </div>
+
+                        <div class="col-12 my-5">
+                            <h4>
+                                <label for="checkOpenHours">Nyitvatartási időpontok módosítása:</label>
+                                <input type="checkbox" id="checkOpenHours" class="form-check-input">
+                            </h4>
+                            <button type="submit" class="btn btn-light border-black" id="vegleg">Véglegesítés</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <script>
+                function nodisplay(){
+                    if(!document.getElementById('checkOpenHours').checked)
+                    {
+                    document.getElementById('vegleg').style.display = "none";
+                    }
+                }
+                
+                document.getElementById('checkOpenHours').onchange = function() {
+                    document.getElementById('mon').disabled = !this.checked;
+                    document.getElementById('tue').disabled = !this.checked;
+                    document.getElementById('wed').disabled = !this.checked;
+                    document.getElementById('thu').disabled = !this.checked;
+                    document.getElementById('fri').disabled = !this.checked;
+                    document.getElementById('sat').disabled = !this.checked;
+                    document.getElementById('sun').disabled = !this.checked;
+                    if(!this.checked)
+                    {
+                    document.getElementById('vegleg').style.display = "none";
+                    }
+                    else {
+                    document.getElementById('vegleg').style.display = "initial";
+                    }
+                };
+
+                function openPageSlice(evt, cityName) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(cityName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                };
+
+            </script>
+
+    </body>
+</html>

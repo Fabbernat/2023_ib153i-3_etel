@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+        <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css” type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/css/order.css" type="text/css">
+        <title>Rendelésem</title>
+    </head>
+    <header>
+        <%- include('./navbar.ejs'); %>
+    </header>
+    <body>
+        <div class="container maincont">
+            <img src="/img/delivery.png" id="futarkep" alt="Szállítás alatt" class="img-rounded img-responsive float-end">
+            <div class="col-sm-5">
+                <h2><i><%= restaurantname%></i></h2>
+                <h3>Rendelési cím: <%= useraddress%></h3>
+                <h3>Futár neve: <%= couriername%></h3>
+                <div class="colorblack inlineword">
+                    <h3>Rendelési lista:</h3>
+                    <ul>
+                        <% var totalprice = 0; %>
+                        <% for(let i = 0; i < foods.length; i++) {%>
+                            <li type="square"><strong><%= foods[i].amount %>x <%= foods[i].foodname %> <br>Ár: <%= foods[i].amount * foods[i].price%> Ft</strong></li>
+                            <% totalprice += foods[i].amount * foods[i].price; %>
+                        <% } %>
+                    </ul>
+                </div>
+                <h3>Teljes ár: <u><%=  totalprice %></u> Ft</h3>
+            </div>
+            <div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
+                    <% if(status == "inprogress" || status == "ready") { %>
+                    <div class="toprem"><h3>Rendelése szállítás alatt van!</h3></div>
+                    <% if(status == "ready" && role=="ROLE_COURIER") {%>
+                        <a href="/orders/<%= orderid%>/complete"><button class="button border-black">Rendelés teljesítése</button></a>
+                    <% } %>
+                    <!--<div class="toprem"><b class="topborder colorblack">Becsült szállítási idő:</b></div><br>
+                    <b class="topborder colorblack">Eltelt idő:</b><br>-->
+                    <% } %>
+                    <% if(status == "complete") {%>
+                    <div class="toprem"><h3>Ez a rendelés már teljesítve lett!</h3></div>   
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

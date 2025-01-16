@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/css/account.css" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <title>Fiókom</title>
+    </head>
+    <body>  
+        <header>
+            <%- include('./navbar.ejs'); %>
+        </header>      
+        <div class="container">
+            <div class="row">
+                <form action="/updateaddress/<%=address.id%>" method="post">                
+                    <h3>Szállítási cím</h3><br>
+                    <div class="col-sm-12">
+                    <label for="address">Szállítási cím</label><br>
+                        <input type="text" id="add1" name="add1" class="col-sm-4" value="<%= address.add1%>" disabled>
+                    </div>
+                    <div class="col-sm-12"><br>                            
+                        <label for="address2">Szállítási cím</label><br>
+                        <input  type="text" id="add2" name="add2" class="col-sm-4" value="<%= address.add2%>" disabled>
+                    </div>
+                    <div class="col-sm-2"><br>
+                        <label for="city">Város</label><br>
+                        <input type="text" id="city" name="city" value="<%= address.city%>" disabled>
+                    </div>
+                    <div class="col-sm-2"><br>
+                        <label for="postcode" >Irányítószám</label><br>
+                    <input type="number" id="zip" name="zip"  value="<%= address.zip%>" disabled>
+                    </div>
+                    <div class="form-check mt-2">
+                        <input type="checkbox" class="form-check-input" id="change">
+                        <label class="float-start fw-bold" for="check">Módosítás</label>
+                    </div>
+                    <div class="col-sm-12"><br>
+                        <input type="submit" value="Mentés" class="bt">
+                    </div>           
+                </form>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h2>Email frissítése:</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form class="form" action="/updateemail" method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="email">Új email:</label>
+                                <input class="form-control" type="text" name="email" id="email">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <input class="btn btn-warning" type="submit" value="Email frissítése">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h2>Jelszó frissítése:</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form class="form" action="/updatepassword" method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="pass1">Új jelszó:</label>
+                                <input class="form-control" type="password" name="pass1" id="pass1">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                                <label for="pass2">Új jelszó újra:</label>
+                                <input class="form-control" type="password" name="pass2" id="pass2">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <input class="btn btn-warning" type="submit" value="Jelszó frissítése">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--
+        <div class="container">
+            <form action="/updateemail" method="post">
+                <h3>E-mail cím</h3><br>
+                <div class="col-sm-4">
+                    <input type="text" id="email" name="email" value="<%= email%>" disabled>
+                </div><br>
+            <label class="col-sm-12"><br>
+                <input type="checkbox" id="ch"> Módosítás
+            </label>
+            <script>
+                document.getElementById('ch').onchange=function(){
+                    document.getElementById('email').disabled=!this.checked;
+                };
+            </script>
+             <label class="col-sm-12"><br>
+                <input type="submit" value="Mentés" class="bt">
+            </label> 
+            </form>           
+        </div>
+        -->
+        <!--
+        <div class="container">
+            <form>
+                <h3>Jelszó kezelés</h3>
+                <div class="col-sm-4">
+                    <label for="oldpass">Régi jelszó</label><br>
+                    <input type="password" id="oldpass" name="oldpass" value="" disabled>
+                    <input type="checkbox" onclick="myFunction()">Jelszó mutatása
+                    <script>
+                        function myFunction(){
+                            var x=document.getElementById("oldpass");
+                            if(x.type==="password"){
+                                x.type="text";
+                            } else{
+                                x.type="password";
+                            }
+                        };                        
+                    </script>                    
+                </div>
+                <div class="col-sm-4">
+                    <label for="newpass">Új jelszó</label><br>
+                    <input type="password" id="newpass" name="newpass" value="" disabled>
+                    <input type="checkbox" onclick="myFunct()">Jelszó mutatása
+                </div>
+                <div class="col-sm-4">
+                    <label for="newpass2">Új jelszó újra</label><br>
+                    <input type="password" id="newpass2" name="newpass2" value="" disabled>
+                    <input type="checkbox" onclick="myFun()">Jelszó mutatása
+                </div>
+                <label class="col-sm-4"><br>
+                    <input type="checkbox" id="cha"> Módosítás
+                </label>
+                <script>
+                    document.getElementById('cha').onchange=function(){
+                        document.getElementById('newpass').disabled=!this.checked;
+                        document.getElementById('newpass2').disabled=!this.checked;
+                    };
+                </script>
+                <script>
+                    function myFunct(){
+                            var x=document.getElementById("newpass");
+                            if(x.type==="password"){
+                                x.type="text";
+                            } else{
+                                x.type="password";
+                            }
+                        };
+                </script>
+                <script>
+                    function myFun(){
+                            var x=document.getElementById("newpass2");
+                            if(x.type==="password"){
+                                x.type="text";
+                            } else{
+                                x.type="password";
+                            }
+                        };
+                </script>
+                 <label class="col-sm-12"><br>
+                    <input type="submit" value="Mentés" class="bt">
+                </label>
+            </form>
+        </div>
+        -->
+        <div class="container">
+            <h3>Kedvelt éttermek</h3>
+            <% if (!favourites) { %>
+                <p>Nincsenek még kedvelt éttermeid!</p>
+                <% } else { %>
+            <% for(var i=0; i< favourites.length; i++) { %>
+                <p><a href="/restaurant/<%= favourites[i].id%>"><%=favourites[i].name %></a></p>
+            <% } %>
+           <% } %>                           
+        </div>
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2">
+                <a class="btn btn-danger" href="/deleteuser">Fiók törlése</a>
+            </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+    <script>
+        document.getElementById('change').onchange = function() {
+            document.getElementById('add1').disabled = !this.checked;
+            document.getElementById('add2').disabled = !this.checked;
+            document.getElementById('city').disabled = !this.checked;
+            document.getElementById('zip').disabled = !this.checked;
+        };
+    </script>      
+    </body>
+</html>
